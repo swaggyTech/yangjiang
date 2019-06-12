@@ -36,4 +36,13 @@ public class BoxServiceTest {
         assertTrue(result2);
     }
 
+    @Test
+    public void shouldRowBeOne() {
+        boolean[][] testTab = {{false,false,true},{false,true,false}};
+        BoxService box = new BoxService();
+        int row = box.getMaxRow(testTab);
+        assertEquals(2,row);
+        int col = box.getMaxCol(testTab);
+        assertEquals(3,col);
+    }
 }
