@@ -2,14 +2,10 @@ package com.yangjiang.tw.thoughtworks.project;
 
 import com.yangjiang.tw.thoughtworks.project.display.DisplayMonitor;
 import com.yangjiang.tw.thoughtworks.project.model.Box;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Scanner;
 
-
-public class ThoughtworksProjectApplication {
-
+public class ThoughtWorksProjectApplication {
 	public static void main(String[] args) throws InterruptedException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("设置速度");
@@ -36,5 +32,4 @@ public class ThoughtworksProjectApplication {
 		displayMonitor.setSpeed(speed);
 		displayMonitor.display();
 	}
-
 }

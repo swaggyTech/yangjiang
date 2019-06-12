@@ -1,7 +1,6 @@
 package com.yangjiang.tw.thoughtworks.project.service;
 
 public class BoxService {
-
     public boolean isCellAlive(boolean[][] matrix,int row,int col) {
         return matrix[row][col];
     }
@@ -12,10 +11,7 @@ public class BoxService {
         boolean[][] newMatrix = new boolean[maxRow][maxCol];
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxCol; col++) {
-                if (isNextAlive(matrix,row, col)) {
-                    newMatrix[row][col] = true;
-                } else
-                    newMatrix[row][col] = false;
+                newMatrix[row][col] = isNextAlive(matrix, row, col);
             }
         }
         return newMatrix;
@@ -66,5 +62,4 @@ public class BoxService {
             return false;
         }
     }
-
 }

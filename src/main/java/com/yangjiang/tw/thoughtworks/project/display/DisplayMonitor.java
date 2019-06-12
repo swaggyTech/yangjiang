@@ -6,6 +6,7 @@ import com.yangjiang.tw.thoughtworks.project.service.BoxService;
 public class DisplayMonitor {
     private Box box;
     private int speed = 500;
+    private BoxService boxService = new BoxService();
 
     public DisplayMonitor(Box box) {
         this.box = box;
@@ -14,7 +15,6 @@ public class DisplayMonitor {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-    BoxService boxService = new BoxService();
 
     public void display() throws InterruptedException {
         int maxRow = boxService.getMaxRow(box.getMatrix());
