@@ -1,6 +1,7 @@
 package com.yangjiang.tw.thoughtworks.project.display;
 
 import com.yangjiang.tw.thoughtworks.project.model.Box;
+import com.yangjiang.tw.thoughtworks.project.service.BoxService;
 
 public class DisplayMonitor {
     private Box box;
@@ -13,14 +14,15 @@ public class DisplayMonitor {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+    BoxService boxService = new BoxService();
 
     public void display() throws InterruptedException {
-        int maxRow = box.getMaxRow();
-        int maxCol = box.getMaxCol();
+        int maxRow = boxService.getMaxRow(box.getMatrix());
+        int maxCol = boxService.getMaxCol(box.getMatrix());
         while (true) {
             for (int row = 0; row < maxRow; row++) {
                 for (int col = 0; col < maxCol; col++) {
-                    if (box.isCellAlive(row, col)) {
+                    if (boxService.isCellAlive(box.getMatrix(),row, col)) {
                         System.out.print("♦");
                     } else {
                         System.out.print("♢");
@@ -29,7 +31,7 @@ public class DisplayMonitor {
                 System.out.println();
             }
             System.out.println();
-            box.next();
+            box.setMatrix(boxService.next(box.getMatrix()));
             Thread.sleep(speed);
         }
     }
