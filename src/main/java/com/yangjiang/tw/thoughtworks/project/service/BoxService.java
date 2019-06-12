@@ -1,7 +1,5 @@
 package com.yangjiang.tw.thoughtworks.project.service;
 
-import com.yangjiang.tw.thoughtworks.project.model.Box;
-
 public class BoxService {
 
     public boolean isCellAlive(boolean[][] matrix,int row,int col) {
@@ -41,6 +39,20 @@ public class BoxService {
         }
         return getNextStatusByAliveNeighbor(matrix,row, col, count);
     }
+
+    public int getMaxCol(boolean [][] matrix) {
+        if(matrix!=null){
+            return matrix[0].length;
+        }
+        return 0;
+    }
+
+    public int getMaxRow(boolean[][] matrix) {
+        if(matrix == null)
+            return 0;
+        return matrix.length;
+    }
+
     private boolean isLocationValid(int row, int col, int maxRow, int maxCol, int xOffSet, int yOffSet) {
         return row + xOffSet >= 0 && col + yOffSet >= 0 && row + xOffSet < maxRow && col + yOffSet < maxCol;
     }
@@ -53,18 +65,6 @@ public class BoxService {
         } else {
             return false;
         }
-    }
-    public int getMaxCol(boolean [][] matrix) {
-        if(matrix!=null){
-            return matrix[0].length;
-        }
-        return 0;
-    }
-
-    public int getMaxRow(boolean[][] matrix) {
-        if(matrix == null)
-            return 0;
-        return matrix.length;
     }
 
 }
