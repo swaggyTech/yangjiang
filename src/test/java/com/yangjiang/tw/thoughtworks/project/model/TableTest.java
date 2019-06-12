@@ -8,7 +8,7 @@ public class TableTest {
 
     @Test
     public void shouldNextGenerationBeDead() {
-        int[][] testTab = {{0,0,0},{0,1,0},{0,0,0}};
+        boolean[][] testTab = {{false,false,false},{false,true,false},{false,false,false}};
         Table table = new Table();
         table.setTable(testTab);
         boolean result = table.isNextAlive(1,1);
@@ -21,7 +21,7 @@ public class TableTest {
 
     @Test
     public void shouldNextGenerationBeAlive() {
-        int[][] testTab = {{0,0,1},{0,0,0},{1,1,0}};
+        boolean[][] testTab = {{false,false,true},{false,false,false},{true,true,false}};
         Table table = new Table();
         table.setTable(testTab);
         boolean result = table.isNextAlive(1,1);
@@ -30,12 +30,12 @@ public class TableTest {
 
     @Test
     public void shouldNextGenerationBeSame() {
-        int[][] testTab = {{0,0,1},{0,1,0},{0,1,0}};
+        boolean[][] testTab = {{false,false,true},{false,true,false},{false,true,false}};
         Table table = new Table();
         table.setTable(testTab);
         boolean result = table.isNextAlive(1,1);
         assertTrue(result);
-        int[][] testTab2={{0,0,1},{0,0,0},{0,1,0}};
+        boolean[][] testTab2={{false,false,true},{false,false,false},{false,true,false}};
         table.setTable(testTab2);
         boolean result2 = table.isNextAlive(1,1);
         assertFalse(result2);
