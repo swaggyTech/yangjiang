@@ -1,37 +1,56 @@
 package com.yangjiang.tw.thoughtworks.project.model;
 
-public class Table {
-    private boolean[][] table;
+public class Box {
+    private boolean[][] matrix;
 
-    public int[][] next(int[][] table) {
-        int maxRow = table[0].length;
-        int maxCol = table.length;
-        int[][] newTable = new int[maxRow][maxCol];
+    public void setMatrix(boolean[][] matrix) {
+        this.matrix = matrix;
+    }
+
+    public boolean isCellAlive(int row,int col) {
+        return matrix[row][col];
+    }
+
+    public void next() {
+        int maxRow = getMaxRow();
+        int maxCol = getMaxCol();
+        boolean[][] newMatrix = new boolean[maxRow][maxCol];
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxCol; col++) {
                 if (isNextAlive(row, col)) {
-                    newTable[row][col] = 1;
+                    newMatrix[row][col] = true;
                 } else
-                    newTable[row][col] = 0;
+                    newMatrix[row][col] = false;
             }
         }
-        return newTable;
+        this.matrix=newMatrix;
     }
 
     public boolean isNextAlive(int row, int col) {
-        int maxRow = table[0].length;
-        int maxCol = table.length;
+        int maxRow = getMaxRow();
+        int maxCol = getMaxCol();
         int count = 0;
         for (int xOffSet = -1; xOffSet <= 1; xOffSet++) {
             for (int yOffSet = -1; yOffSet <= 1; yOffSet++) {
                 if (isLocationValid(row, col, maxRow, maxCol, xOffSet, yOffSet)) {
-                    if (table[row + xOffSet][col + yOffSet]) {
+                    if(xOffSet == 0 && yOffSet == 0){
+                        continue;
+                    }
+                    if (matrix[row + xOffSet][col + yOffSet]) {
                         count++;
                     }
                 }
             }
         }
         return getNextStatusByAliveNeighbor(row, col, count);
+    }
+
+    public int getMaxCol() {
+        return matrix.length;
+    }
+
+    public int getMaxRow() {
+        return matrix[0].length;
     }
 
     private boolean isLocationValid(int row, int col, int maxRow, int maxCol, int xOffSet, int yOffSet) {
@@ -42,13 +61,17 @@ public class Table {
         if (count == 3) {
             return true;
         } else if (count == 2) {
-            return table[row][col];
+            return matrix[row][col];
         } else {
             return false;
         }
     }
 
     public void setTable(boolean[][] table) {
-        this.table = table;
+        this.matrix = table;
+    }
+
+    public boolean[][] getTable() {
+        return matrix;
     }
 }
