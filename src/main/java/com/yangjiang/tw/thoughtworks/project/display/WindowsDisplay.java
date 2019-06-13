@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WindowsDisplay extends JFrame {
+    private static final int MAX_WINDOW_WIDTH = 1500;
+    private static final int MAX_WINDOW_HEIGHT = 1000;
+    private static final int WINDOW_LOCATION_X = 100;
+    private static final int WINDOW_LOCATION_Y = 100;
     private BoxService boxService= new BoxService();
     private int speed;
     private Box box;
@@ -15,7 +19,7 @@ public class WindowsDisplay extends JFrame {
     public WindowsDisplay(Box box,int speed){
         this.box =box;
         this.speed = speed;
-        setBounds(100,100,1500,1000);
+        setBounds(WINDOW_LOCATION_X, WINDOW_LOCATION_Y, MAX_WINDOW_WIDTH, MAX_WINDOW_HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
     }
@@ -26,6 +30,7 @@ public class WindowsDisplay extends JFrame {
         JPanel gridPanel = new JPanel();
         gridPanel.setLayout(new GridLayout(maxRow  ,maxCol));
         textFields = new JTextField[maxRow][maxCol];
+
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxCol; col++) {
                 JTextField text = new JTextField();
@@ -38,7 +43,6 @@ public class WindowsDisplay extends JFrame {
         add("Center", gridPanel);
         setVisible(true);
     }
-
 
     public void display() throws InterruptedException {
         int maxRow = boxService.getMaxRow(box.getMatrix());

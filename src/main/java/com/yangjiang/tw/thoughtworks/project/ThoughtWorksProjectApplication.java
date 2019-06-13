@@ -1,6 +1,5 @@
 package com.yangjiang.tw.thoughtworks.project;
 
-import com.yangjiang.tw.thoughtworks.project.display.DisplayMonitor;
 import com.yangjiang.tw.thoughtworks.project.display.WindowsDisplay;
 import com.yangjiang.tw.thoughtworks.project.model.Box;
 
@@ -17,31 +16,40 @@ public class ThoughtWorksProjectApplication {
 		int maxRow = sc.nextInt();
 		System.out.println("输入矩阵col轴");
 		int maxCol = sc.nextInt();
+
 		boolean[][] initMatrix = new boolean[maxRow][maxCol];
 		Box box = new Box();
+
 		if(isRandom == 0){
 			System.out.println("设置活细胞，输入坐标,输入 0 0 结束");
 			while(sc.hasNextLine()){
 				int row = sc.nextInt();
 				int col = sc.nextInt();
-				if(row == -1 || col == -1)
-					break;
-				if(row < 0 || col < 0 || row >= maxRow || col >= maxCol)
-					System.out.println("输入非法");
-				else
-					initMatrix[row][col] = true;
+				if (isInputValid(maxRow, maxCol, initMatrix, row, col)) break;
 			}
 			box.setMatrix(initMatrix);
 		}else{
 			box.getRandomMatrix(maxRow,maxCol);
 		}
-		/*DisplayMonitor displayMonitor = new DisplayMonitor(box);
-		displayMonitor.setSpeed(speed);
-		displayMonitor.display();*/
-		WindowsDisplay windowsDisplay = new WindowsDisplay(box,500);
+
+		show(speed, box);
+	}
+
+	private static void show(int speed, Box box) throws InterruptedException {
+		WindowsDisplay windowsDisplay = new WindowsDisplay(box,speed);
 		windowsDisplay.init();
 		while(true) {
 			windowsDisplay.display();
 		}
+	}
+
+	private static boolean isInputValid(int maxRow, int maxCol, boolean[][] initMatrix, int row, int col) {
+		if(row == -1 || col == -1)
+			return true;
+		if(row < 0 || col < 0 || row >= maxRow || col >= maxCol)
+			System.out.println("输入非法");
+		else
+			initMatrix[row][col] = true;
+		return false;
 	}
 }
