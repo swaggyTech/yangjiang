@@ -6,6 +6,9 @@ import com.yangjiang.tw.thoughtworks.project.model.Box;
 import java.util.Scanner;
 
 public class ThoughtWorksProjectApplication {
+	private static final int MAX_ROW = 180;
+	private static final int MAX_COL = 180;
+
 	public static void main(String[] args) throws InterruptedException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("是否随机生成？[0/1]");
@@ -16,6 +19,10 @@ public class ThoughtWorksProjectApplication {
 		int maxRow = sc.nextInt();
 		System.out.println("输入矩阵col轴");
 		int maxCol = sc.nextInt();
+
+		if (isInvalidSize(maxRow, maxCol)) {
+			return;
+		}
 
 		boolean[][] initMatrix = new boolean[maxRow][maxCol];
 		Box box = new Box();
@@ -33,6 +40,14 @@ public class ThoughtWorksProjectApplication {
 		}
 
 		show(speed, box);
+	}
+
+	private static boolean isInvalidSize(int maxRow, int maxCol) {
+		if (maxRow > MAX_ROW || maxCol > MAX_COL) {
+			System.out.println("数值过大，细胞挤死完了！！！发现彩蛋，发个红包");
+			return true;
+		}
+		return false;
 	}
 
 	private static void show(int speed, Box box) throws InterruptedException {

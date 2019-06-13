@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WindowsDisplay extends JFrame {
-    private static final int MAX_WINDOW_WIDTH = 1500;
-    private static final int MAX_WINDOW_HEIGHT = 1000;
+    private static final int MAX_WINDOW_WIDTH = 1200;
+    private static final int MAX_WINDOW_HEIGHT = 1200;
     private static final int WINDOW_LOCATION_X = 100;
     private static final int WINDOW_LOCATION_Y = 100;
     private BoxService boxService= new BoxService();
@@ -34,8 +34,9 @@ public class WindowsDisplay extends JFrame {
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxCol; col++) {
                 JTextField text = new JTextField();
-                if(box.getMatrix()[row][col])
+                if (box.getMatrix()[row][col]) {
                     text.setBackground(Color.BLACK);
+                }
                 textFields[row][col] = text;
                 gridPanel.add(text);
             }
