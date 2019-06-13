@@ -15,7 +15,7 @@ public class WindowsDisplay extends JFrame {
     public WindowsDisplay(Box box,int speed){
         this.box =box;
         this.speed = speed;
-        setBounds(100,100,300,300);
+        setBounds(100,100,1500,1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
     }
