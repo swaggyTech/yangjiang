@@ -51,7 +51,7 @@ public class WindowsDisplay extends JFrame {
         for (int row = 0; row < maxRow; row++) {
             for (int col = 0; col < maxCol; col++) {
                 if (boxService.isCellAlive(box.getMatrix(), row, col)) {
-                    textFields[row][col].setBackground(Color.DARK_GRAY);
+                    textFields[row][col].setBackground(Color.black);
                 } else {
                     textFields[row][col].setBackground(Color.white);
                 }
