@@ -1,6 +1,7 @@
 package com.yangjiang.tw.thoughtworks.project;
 
 import com.yangjiang.tw.thoughtworks.project.display.DisplayMonitor;
+import com.yangjiang.tw.thoughtworks.project.display.WindowsDisplay;
 import com.yangjiang.tw.thoughtworks.project.model.Box;
 
 import java.util.Scanner;
@@ -28,8 +29,13 @@ public class ThoughtWorksProjectApplication {
 		}
 		Box box = new Box();
 		box.setMatrix(initMatrix);
-		DisplayMonitor displayMonitor = new DisplayMonitor(box);
+		/*DisplayMonitor displayMonitor = new DisplayMonitor(box);
 		displayMonitor.setSpeed(speed);
-		displayMonitor.display();
+		displayMonitor.display();*/
+		WindowsDisplay windowsDisplay = new WindowsDisplay(box,500);
+		windowsDisplay.init();
+		while(true) {
+			windowsDisplay.display();
+		}
 	}
 }

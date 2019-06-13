@@ -10,4 +10,5 @@ public class Box {
     public void setMatrix(boolean[][] matrix) {
         this.matrix = matrix;
     }
+
 }
